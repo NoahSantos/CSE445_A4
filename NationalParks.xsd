@@ -1,41 +1,67 @@
-<?xml version="1.0" encoding="utf-8"?>
-	<xs:schema 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    elementFormDefault="qualified"
-    attributeFormDefault="unqualified">
-		<xs:element name="NationalParks">
-			<xs:complexType>
-				
-				<xs:sequence>
-					<xs:element name="NationalPark" minOccurs="1" maxOccurs="unbounded">
-						<xs:complexType>
-
-							<xs:sequence>
-								<xs:element name="Name" type="xs:string" />
-								<xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
-								<xs:element name="Address">
-									<xs:complexType>
-										
-										<xs:sequence>
-											<xs:element name="Number" type="xs:string" />
-											<xs:element name="Street" type="xs:string" />
-											<xs:element name="City" type="xs:string" />
-											<xs:element name="State" type="xs:string" />
-											<xs:element name="Zip" type="xs:string" />
-										</xs:sequence>
-
-										<xs:attribute name="NearestAirport" type="xs:string" use="required" />
-										
-									</xs:complexType>
-								</xs:element>
-							</xs:sequence>
-
-							<xs:attribute name="Rating" type="xs:string" use="optional" />
-
-						</xs:complexType>
-					</xs:element>
-				</xs:sequence>
-				
-			</xs:complexType>
-		</xs:element>
-	</xs:schema>
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="NationalParks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="NationalPark" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+			  
+            <xs:sequence>
+              <xs:element name="Name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:minLength value="1"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Phone" minOccurs="1" maxOccurs="unbounded">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[0-9]{3}-[0-9]{3}-[0-9]{4}"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Address">
+                <xs:complexType>
+					
+                  <xs:sequence>
+                    <xs:element name="Number" type="xs:string"/>
+                    <xs:element name="Street" type="xs:string"/>
+                    <xs:element name="City" type="xs:string"/>
+                    <xs:element name="State">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[A-Z]{2}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Zip">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:pattern value="[0-9]{5}"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+					
+                  <xs:attribute name="NearestAirport" type="xs:string" use="required"/>
+					
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+			  
+            <xs:attribute name="Rating" use="optional">
+              <xs:simpleType>
+                <xs:restriction base="xs:decimal">
+                  <xs:minInclusive value="0"/>
+                  <xs:maxInclusive value="5"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:attribute>
+			  
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
