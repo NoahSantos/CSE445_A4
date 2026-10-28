@@ -41,12 +41,12 @@
 	</NationalPark>
 	
 	<NationalPark Rating="4.9">
-		<Name>Haleakalā</Name>
+		<Name>Haleakala</Name>
 		<Phone>808-572-4400</Phone>
 		<Phone>808-572-4459</Phone>
 		<Address NearestAirport="Kahului Airport">
 			<Number>30000</Number>
-			<Street>Haleakalā Hwy</Street>
+			<Street>Haleakala Hwy</Street>
 			<City>Kula</City>
 			<State>HI</State>
 			<Zip>96790</Zip>
